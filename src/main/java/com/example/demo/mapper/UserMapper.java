@@ -17,9 +17,15 @@ public interface UserMapper {
 
     void userInsert(User user);
 
-    @Select("select * from user where Account=#{account} and Password=#{password} and Status=0")
+    @Select("select * from user where Account=#{account} and Password=#{password} and #{role}=0")
     User selectByAccountAndPasswordAndRole0(User user);
 
-    @Select("select * from user where Account=#{account} and Password=#{password} and Status=1")
+    @Select("select * from user where Account=#{account} and Password=#{password} and #{role}=1")
     User selectByAccountAndPasswordAndRole1(User user);
+
+//    @Select("select * from user where UserID= #{id}")
+    User selectById(Integer id);
+
+    @Insert("update user set Nickname=#{nickname} where UserId=#{id}")
+    void updateProfile(Integer id, String nickname);
 }

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Verification {
-    private  String email;
+    private  String account;
     private String verificationCode;
 
 }

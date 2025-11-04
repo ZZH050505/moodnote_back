@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.pojo.Auth;
 import com.example.demo.pojo.User;
 import com.example.demo.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,11 +19,17 @@ class RegisterTest {
 
     @Test
     public void register() {
-        User user = new User();
-        user.setAccount("a2987025642@163.com");
-        user.setPassword("123456");
-        authService.register(user);
+        Auth auth = new Auth();
+        auth.setAccount("a2987025642@163.com");
+        auth.setPassword("123456");
+        auth.setVerificationCode("pfeuqk");
+        authService.register(auth);
     }
 
-
+    @Test
+    public void sendCode() {
+        User user = new User();
+        user.setAccount("a2987025642@163.com");
+        authService.sendCode(user);
+    }
 }
