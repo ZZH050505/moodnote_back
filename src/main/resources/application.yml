@@ -30,3 +30,9 @@ logging:
   level:
     org.springframework.jdbc.support.JdbcTransactionManager: debug
 
+
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: java-webai-zzh
+    region: cn-beijing

@@ -3,6 +3,9 @@ package com.example.demo.utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
+
 import java.util.Date;
 import java.util.Map;
 
@@ -34,5 +37,12 @@ public class JwtUtils {
                 .setSigningKey(SIGN_KEY) // 设置签名密钥
                 .parseClaimsJws(jwt)
                 .getBody();
+    }
+
+    public static Integer getId(HttpServletRequest request)
+    {
+        String jwt = request.getHeader("token");
+        Claims claims = parseJwt(jwt);
+        return (Integer) claims.get("id");
     }
 }

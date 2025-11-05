@@ -11,12 +11,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EventImage {
-    private Integer imageID;
-    private Integer eventID;
-    private String imageURL;
-    private String thumbnailURL;
-    private Integer imageSize;
-    private String imageType;
-    private Integer status;
-    private LocalDateTime uploadTime;
+    private Integer imageId;//主键，不需要传递
+    private Integer eventId;//插入后生成的eventId赋值给这个
+    private String imageUrl;//图片地址，前端传递
+    private Integer status=1;//状态，0屏蔽，1正常
+    private LocalDateTime uploadTime;//上传时间,插入后生成
 }

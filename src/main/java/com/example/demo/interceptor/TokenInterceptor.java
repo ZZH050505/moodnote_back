@@ -22,7 +22,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         //获取请求路径
         String requestURI = request.getRequestURI();//ip地址后面的部分
         //判断是否是登录请求，如果路径中包含login，说明是登录操作，放行
-        if(requestURI.contains("login"))
+        if(requestURI.contains("login")&&requestURI.contains("register"))
         {
             log.info("登录操作，放行");
             return true;
