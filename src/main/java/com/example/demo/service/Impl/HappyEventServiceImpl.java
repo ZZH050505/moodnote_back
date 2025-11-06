@@ -2,6 +2,7 @@ package com.example.demo.service.Impl;
 
 import com.example.demo.mapper.EventImageMapper;
 import com.example.demo.mapper.HappyEventMapper;
+import com.example.demo.mapper.PublicMapper;
 import com.example.demo.mapper.RecordMapper;
 import com.example.demo.pojo.*;
 import com.example.demo.service.HappyEventService;
@@ -28,6 +29,8 @@ public class HappyEventServiceImpl implements HappyEventService {
     private EventImageMapper eventImageMapper;
     @Autowired
     private RecordMapper recordMapper;
+    @Autowired
+    private PublicMapper publicMapper;
 
     //个人的 活动
 
@@ -121,7 +124,7 @@ public class HappyEventServiceImpl implements HappyEventService {
         happyEvent.setLikeCount(EventLikeMap.getOrDefault(eventId,0L));
         happyEvent.setCommentCount(EventCommentMap.getOrDefault(eventId,0L));
         //获取是否点赞
-        Boolean isLike=recordMapper.selectLikeById(UserId,eventId);
+        Boolean isLike=publicMapper.selectLikeById(UserId,eventId);
         happyEvent.setIsLike(isLike!=null);
         log.info("\n获取活动详情:{}\n",happyEvent);
         return happyEvent;
@@ -153,16 +156,10 @@ public class HappyEventServiceImpl implements HappyEventService {
         log.info("\n删除活动及其照片:{}",eventId);
         eventImageMapper.deleteByEventId(eventId);
         happyEventMapper.deleteByEventId(eventId);
-        recordMapper.deleteLikeByEventId(eventId);
-        recordMapper.deleteCommentByEventId(eventId);
-    }
-
-    @Override
-    public void getPublicEvent(EventQueryParam param) {
-
+        publicMapper.deleteLikeByEventId(eventId);
+        publicMapper.deleteCommentByEventId(eventId);
     }
 
 
-    //公共活动
 
 }

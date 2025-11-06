@@ -23,9 +23,9 @@ public interface AuthMapper {
     @Select("select * from verification_code where account= #{account}")
     Verification selectVerificationCode(String account);
 
-    @Update("update user set LastLoginTime= #{lastLoginTime},Status=user.Status-1 where UserID= #{id}")
-    void updateLastLoginTimeAndStatus(LocalDateTime lastLoginTime, Integer id);
+    @Update("update user set LastLoginTime= #{lastLoginTime} where UserID= #{id}")
+    void updateLastLoginTime(LocalDateTime lastLoginTime, Integer id);
 
-    @Update("update user set Status=user.Status+1 where Account= #{account}")
-    void updateStatus(User user1);
+//    @Update("update user set  where Account= #{account}")
+//    void updateStatus(User user1);
 }

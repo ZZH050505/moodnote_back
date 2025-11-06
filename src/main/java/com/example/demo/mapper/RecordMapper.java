@@ -1,8 +1,8 @@
 package com.example.demo.mapper;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.MapKey;
-import org.apache.ibatis.annotations.Mapper;
+import com.example.demo.pojo.Comment;
+import com.example.demo.pojo.LikeRecord;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -17,11 +17,5 @@ public interface RecordMapper {
     List<Map<String, Object>> getEventCommentMap(List<Integer> eventIds);
 
 
-    Boolean selectLikeById(Integer userId, Integer eventId);
 
-    @Delete("delete from moodnote.likerecord where EventID=#{eventId}")
-    void deleteLikeByEventId(Integer eventId);
-
-    @Delete("delete from moodnote.comment where EventID=#{eventId}")
-    void deleteCommentByEventId(Integer eventId);
 }

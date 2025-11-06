@@ -14,6 +14,8 @@ public class Comment {
     private Integer eventID;
     private Integer userID;
     private String content;
-    private Integer status;
+    private Integer status=1;
     private LocalDateTime commentTime;
+
+    private String nickName;
 }

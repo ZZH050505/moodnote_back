@@ -2,6 +2,7 @@ package com.example.demo.interceptor;
 
 
 import com.example.demo.utils.JwtUtils;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +40,24 @@ public class TokenInterceptor implements HandlerInterceptor {
         //如果存在，校验令牌，如果校验失败，返回错误信息（响应401状态码）
         try
         {
-            JwtUtils.parseJwt( token);
+            Claims claims = JwtUtils.parseJwt(token);
+            if(requestURI.contains("admin"))
+            {
+                Integer role=(Integer)claims.get("role");
+                log.info("\n\n\nrole={}\n\n\n",role);
+                if(role==1)
+                {
+                    log.info("登录操作，放行");
+                    return true;
+                }
+                else
+                {
+                    log.info("用户id{}",JwtUtils.getId(request));
+                    log.info("用户没有权限");
+                    response.setStatus(403);
+                    return false;
+                }
+            }
         }
         catch (Exception e)
         {

@@ -15,7 +15,6 @@ public class User {
     private String nickname;
     private String avatarURL;
     private Integer role;
-    private Integer status;
     private java.time.LocalDateTime registerTime;
     private java.time.LocalDateTime lastLoginTime;
     private java.time.LocalDateTime createdAt;

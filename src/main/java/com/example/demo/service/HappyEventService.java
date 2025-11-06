@@ -1,9 +1,11 @@
 package com.example.demo.service;
 
+import com.example.demo.pojo.Comment;
 import com.example.demo.pojo.EventQueryParam;
 import com.example.demo.pojo.HappyEvent;
 import com.example.demo.pojo.PageResult;
-import jdk.jfr.Event;
+
+import java.util.List;
 
 public interface HappyEventService {
     void addEvent(HappyEvent happyEvent);
@@ -16,5 +18,5 @@ public interface HappyEventService {
 
     void deleteEvent(Integer eventId);
 
-    void getPublicEvent(EventQueryParam param);
+
 }

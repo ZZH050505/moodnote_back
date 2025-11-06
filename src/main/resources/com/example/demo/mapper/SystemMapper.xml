@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SystemMapper">
+
+    <select id="getReport" resultType="com.example.demo.pojo.Report">
+        select *
+        from
+        (select count(*) as totalUsers from user) as t1,
+        (select count(*) as totalEvents from happyevent) as t2,
+        (select count(*) as totalImages from eventimage) as t3,
+        (select count(*) as totalComments from comment) as t4,
+        (select count(*) as todayActiveUsers from user where LastLoginTime >= #{date}) as t5
+    </select>
+</mapper>

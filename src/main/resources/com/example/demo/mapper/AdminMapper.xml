@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.AdminMapper">
+    <update id="updateUserImageStatus">
+        update moodnote.eventimage
+        set Status= #{status}
+        where ImageID in
+        (select EventID from happyevent where userID=#{userId})
+    </update>
+
+    <select id="selectAllUserByParam" resultType="com.example.demo.pojo.User">
+        select * from user
+        where Status=#{status} and Nickname like concat('%',#{keyword},'%')
+    </select>
+    <select id="selectEventByParam" resultType="com.example.demo.pojo.HappyEvent">
+<!--        使用动态sql-->
+        select * from happyevent
+        <where>
+            <if test="status != null">
+                and Status=#{status}
+            </if>
+            <if test="keyword != null and keyword !=''">
+                and Content like concat("%",#{keyword},"%")
+            </if>
+            <if test="userId != null">
+                and UserID=#{userId}
+            </if>
+            <if test="startDate != null">
+                and CreateTime &gt;= #{startDate}
+            </if>
+            <if test="endDate != null">
+                and CreateTime &lt;= #{endDate}
+            </if>
+            <if test="isPublic!=null">
+                and  IsPublic=#{isPublic}
+            </if>
+            <if test="hasImages!=null">
+               and exists(select * from eventimage where EventID=happyevent.EventID)
+            </if>
+        </where>
+    </select>
+</mapper>

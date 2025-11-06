@@ -72,7 +72,7 @@ public class AuthServiceImpl implements AuthService {
         user.setAvatarURL("");
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
-        user.setStatus(1);
+        //user.setStatus(1);
 
         userMapper.userInsert(user);
         //删除令牌
@@ -109,7 +109,7 @@ public class AuthServiceImpl implements AuthService {
     public LoginInfo userLogin(User user) {
         log.info("用户登录:{}",user);
         User user1=userMapper.selectByAccountAndPasswordAndRole0(user);
-        authMapper.updateStatus(user1);
+        //authMapper.updateStatus(user1);
         if (user1==null)
         {
             //抛出用户不存在异常
@@ -131,7 +131,7 @@ public class AuthServiceImpl implements AuthService {
         log.info("管理员登录:{}",user);
 
         User user1=userMapper.selectByAccountAndPasswordAndRole1(user);
-        authMapper.updateStatus(user1);
+        //authMapper.updateStatus(user1);
         if (user1==null)
         {
             //抛出用户不存在异常
@@ -152,8 +152,8 @@ public class AuthServiceImpl implements AuthService {
     public void logout(Integer id) {
         log.info("用户登出:id={}",id);
         //authMapper.deleteVerificationCode(user.getAccount());
-        authMapper.updateLastLoginTimeAndStatus(LocalDateTime.now(),id);
-        authMapper.logout(LocalDateTime.now(),id);
+        authMapper.updateLastLoginTime(LocalDateTime.now(),id);
+        //authMapper.logout(LocalDateTime.now(),id);
     }
 
 

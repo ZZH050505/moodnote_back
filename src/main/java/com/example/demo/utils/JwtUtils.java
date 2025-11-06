@@ -45,4 +45,10 @@ public class JwtUtils {
         Claims claims = parseJwt(jwt);
         return (Integer) claims.get("id");
     }
+    public static Integer getRole(HttpServletRequest request)
+    {
+        String jwt = request.getHeader("token");
+        Claims claims = parseJwt(jwt);
+        return (Integer) claims.get("role");
+    }
 }

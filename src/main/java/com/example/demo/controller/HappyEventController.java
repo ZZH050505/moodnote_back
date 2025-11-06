@@ -1,18 +1,18 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.pojo.EventQueryParam;
-import com.example.demo.pojo.HappyEvent;
-import com.example.demo.pojo.PageResult;
-import com.example.demo.pojo.Result;
+import com.example.demo.pojo.*;
 import com.example.demo.service.HappyEventService;
 import com.example.demo.utils.JwtUtils;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -63,16 +63,6 @@ public class HappyEventController {
     public Result deleteEvent(HttpServletRequest request,@PathVariable Integer eventId) {
         log.info("\n删除活动:{}\n",eventId);
         happyEventService.deleteEvent(eventId);
-        return Result.success();
-    }
-
-
-
-    @GetMapping("/public")
-    public Result getPublicEvent(@RequestBody EventQueryParam param)
-    {
-        log.info("查询公共事件:{}",param);
-        happyEventService.getPublicEvent(param);
         return Result.success();
     }
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PublicMapper">
+    <select id="selectLikeById" resultType="java.lang.Boolean">
+        select * from likerecord
+        where userID=#{userId} and EventID=#{eventId}
+    </select>
+    <select id="getEventCommentByEventId" resultType="com.example.demo.pojo.Comment">
+        select c.CommentID CommentID,u.Nickname nickName ,c.Content content,c.UserID userID,c.EventID eventID,c.CommentTime commentTime
+        from user u,comment c
+        where u.userid=c.userid
+        and c.EventID=1;
+    </select>
+    <insert id="insert">
+        insert into moodnote.comment(EventID, UserID, Content, Status, CommentTime)
+        values (#{eventID},#{userID},#{content},#{status},#{commentTime})
+    </insert>
+</mapper>

@@ -14,16 +14,18 @@ public interface HappyEventMapper {
 
     void insert(HappyEvent happyEvent);
 
-    @Select("select * from happyevent where UserID=#{id}")
+    @Select("select * from moodnote.happyevent where UserID=#{id} order by CreateTime")
     List<HappyEvent> selectById(Integer id);
 
 
-    @Select("select * from happyevent  where EventID=#{id}")
+    @Select("select * from moodnote.happyevent  where EventID=#{id}")
     HappyEvent selectByEventId(Integer id);
 
 //    @Update("update happyevent set =#{} where EventID=#{eventID}")
     void updateEvent(HappyEvent event);
 
-    @Delete("delete from happyevent where EventID= #{eventId}")
+    @Delete("delete from moodnote.happyevent where EventID= #{eventId}")
     void deleteByEventId(Integer eventId);
+
+
 }

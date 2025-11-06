@@ -4,9 +4,12 @@ import com.example.demo.mapper.AuthMapper;
 import com.example.demo.pojo.Auth;
 import com.example.demo.utils.SendMail;
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.api.LocalDateAssert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.time.LocalDate;
 
 @Slf4j
 @SpringBootTest
@@ -44,5 +47,13 @@ class DemoApplicationTests {
         Auth auth = new Auth();
         auth.setAccount("a2987025642@163.com");
         getCode(auth);
+    }
+
+    @Test
+    void test()
+    {
+        log.info("测试");
+        LocalDate localDate = LocalDate.now();
+        System.out.println(localDate);
     }
 }
